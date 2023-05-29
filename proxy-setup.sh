@@ -11,8 +11,13 @@ apt install ufw -y
 sudo ufw allow 9741
 sudo ufw reload 
 # Add the following lines at the end of the file:
-echo "listen-address 0.0.0.0:9741" | sudo tee -a /etc/privoxy/config
-echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
+if ! grep -q "listen-address 0.0.0.0:9741" /etc/privoxy/config; then
+  echo "listen-address 0.0.0.0:9741" | sudo tee -a /etc/privoxy/config
+fi
+
+if ! grep -q "permit-access 0.0.0.0" /etc/privoxy/config; then
+  echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
+fi
 
 # Save and exit the nano editor
 
