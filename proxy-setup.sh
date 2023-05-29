@@ -6,9 +6,6 @@ apt update
 # Install Privoxy
 apt install privoxy -y
 
-# Edit Privoxy configuration
-nano /etc/privoxy/config
-
 # Add the following lines at the end of the file:
 echo "listen-address 0.0.0.0:9741" | sudo tee -a /etc/privoxy/config
 echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
