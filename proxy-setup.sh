@@ -10,8 +10,8 @@ apt install privoxy -y
 nano /etc/privoxy/config
 
 # Add the following lines at the end of the file:
-# listen-address 0.0.0.0:9741
-# permit-access 0.0.0.0
+echo "listen-address 0.0.0.0:9741" | sudo tee -a /etc/privoxy/config
+echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
 
 # Save and exit the nano editor
 
@@ -23,6 +23,6 @@ external_ip=$(curl -s https://ipinfo.io/ip)
 
 # Display server's external IP and Privoxy port
 echo "################################"
-echo "ServerIP: $external_ip"
+echo "Proxy IP: $external_ip"
 echo "Proxy Port: 9741"
 echo "################################"
