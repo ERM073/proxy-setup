@@ -3,9 +3,13 @@
 # Update package lists
 apt update
 
-# Install Privoxy
+# Install ufw & Privoxy
 apt install privoxy -y
+apt install ufw -y
 
+# Open Proxy Port
+sudo ufw allow 9741
+sudo ufw reload 
 # Add the following lines at the end of the file:
 echo "listen-address 0.0.0.0:9741" | sudo tee -a /etc/privoxy/config
 echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
@@ -14,6 +18,8 @@ echo "permit-access 0.0.0.0" | sudo tee -a /etc/privoxy/config
 
 # Restart Privoxy service
 systemctl restart privoxy
+
+clear
 
 # Get server's external IP address
 external_ip=$(curl -s https://ipinfo.io/ip)
